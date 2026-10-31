@@ -107,5 +107,21 @@ public class InterviewController {
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/stats/by-status")
+    public ResponseEntity<List<Object[]>> getInterviewCountsByStatus() {
+        return new ResponseEntity<>(interviewServ.getInterviewCountsByStatus(), HttpStatus.OK);
+    }
+
+    @PatchMapping("/cancel-day")
+    public ResponseEntity<String> cancelDay(@RequestParam UUID recruiterId,
+                                            @RequestParam String date) {
+        LocalDate day;
+        try {
+            day = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            return new ResponseEntity<>("Date must be in the format yyyy-MM-dd", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(interviewServ.cancelDay(recruiterId, day), HttpStatus.OK);
+    }
 
 }

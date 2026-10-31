@@ -1,5 +1,6 @@
 package ksw.h_r_recruitment_management_system.service;
 
+import jakarta.transaction.Transactional;
 import ksw.h_r_recruitment_management_system.domain.Interview;
 import ksw.h_r_recruitment_management_system.domain.InterviewStatus;
 import ksw.h_r_recruitment_management_system.repository.InterviewRepository;
@@ -106,6 +107,16 @@ public class InterviewService {
         interview.setStatus(newStatus);
         interviewRepo.save(interview);
         return STATUS_UPDATED;
+    }
+    public List<Object[]> getInterviewCountsByStatus() {
+        return interviewRepo.countInterviewsByStatus();
+    }
+
+    @Transactional
+    public String cancelDay(UUID recruiterId, LocalDate date) {
+        int cancelled = interviewRepo.cancelInterviewsOfDay(
+                recruiterId, date, InterviewStatus.REJECTED, InterviewStatus.OFFERED);
+        return cancelled + " interviews cancelled";
     }
 
 }
