@@ -75,7 +75,7 @@ public class ApplicantController {
     @GetMapping("/of-recruiter/{recruiterId}")
     public ResponseEntity<?> getApplicantsOfRecruiter(@PathVariable UUID recruiterId) {
         if(recruiterServ.getRecruiterById(recruiterId).isEmpty()) {
-            return new ResponseEntity<>(ApplicantService.NOT_FOUND, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(RecruiterService.NOT_FOUND, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(applicantServ.getApplicantsOfRecruiter(recruiterId), HttpStatus.OK);
 

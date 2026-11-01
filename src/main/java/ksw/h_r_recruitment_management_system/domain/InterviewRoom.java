@@ -12,10 +12,10 @@ public class InterviewRoom {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "room_number", nullable = false)
+    @Column(name = "room_number")
     private int roomNumber;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "name")
     private String name;
 
     //class constructor
@@ -26,19 +26,24 @@ public class InterviewRoom {
     public UUID getId() {
         return id;
     }
-   public void setId(UUID id) {
+
+    public void setId(UUID id) {
         this.id = id;
-   }
-   public int getRoomNumber() {
+    }
+
+    public int getRoomNumber() {
         return roomNumber;
-   }
-   public void setRoomNumber(int roomNumber) {
+    }
+
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
-   }
-   public String getName() {
+    }
+
+    public String getName() {
         return name;
-   }
-   public void setName(String name) {
+    }
+
+    public void setName(String name) {
         this.name = name;
-   }
+    }
 }

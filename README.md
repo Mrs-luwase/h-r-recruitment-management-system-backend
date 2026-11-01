@@ -14,10 +14,6 @@
   <img src="https://img.shields.io/badge/Postman-3F6B52?style=for-the-badge&logo=postman&logoColor=white" alt="Postman">
 </p>
 
-<!--
-<p align="center">
-  <img src="docs/banner.svg" alt="HR Recruitment Management System, a Spring Boot REST API" width="100%">
-</p> -->
 
 <p align="center">
   <b>Course:</b> Web Technology and Internet &nbsp;|&nbsp; <b>Course code:</b> INSY 8322<br>
@@ -247,35 +243,6 @@ The collection is in the root of the repository: `h-r-recruitment-management-sys
 
 Two notes: run `00-setup` only while the data is in its clean state, and do not run the `seed` folder again after rule D1 is active, because the seed interviews have dates in the past and are now rejected.
 
-<!--
-SCREENSHOTS: take these four pictures, save them in a folder called screenshots/, then delete the two
-comment lines (the opening and the closing arrow) around this block.
-
-<h2 align="center">Screenshots</h2>
-
-<table align="center">
-  <tr>
-    <td align="center">
-      <img src="screenshots/postman-part-d.png" alt="Postman runner, Part D, all checks passed" width="420"><br>
-      <sub>Part D in the Postman runner: all checks green.</sub>
-    </td>
-    <td align="center">
-      <img src="screenshots/postman-part-e-f.png" alt="Postman runner, Parts E and F, all checks passed" width="420"><br>
-      <sub>Parts E and F in the Postman runner.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="screenshots/pgadmin-tables.png" alt="pgAdmin showing the six tables" width="420"><br>
-      <sub>The six tables created by Hibernate.</sub>
-    </td>
-    <td align="center">
-      <img src="screenshots/f1-stats.png" alt="F1 response with interview counts per status" width="420"><br>
-      <sub>F1: interview counts per status.</sub>
-    </td>
-  </tr>
-</table>
--->
 
 ---
 
@@ -291,7 +258,6 @@ h-r-recruitment-management-system-backend/
     controller/    one controller per entity (paths, HTTP statuses)
     HRRecruitmentManagementSystemApplication.java
   src/main/resources/application.properties
-  docs/banner.svg
   pom.xml
   h-r-recruitment-management-system-midterm.postman_collection.json
   README.md
@@ -336,7 +302,6 @@ The service checks the rules and returns a message. The controller compares the 
 <h2 align="center">Challenges I met</h2>
 
 - **`ddl-auto=update` never renames a column.** I had named a join column wrongly. After correcting the annotation, Hibernate added a second empty column, and I had to rename the old one by hand with `ALTER TABLE ... RENAME COLUMN` to keep the data.
-- **A query that was missing its `FROM`.** The app refused to start with `Query validation failed`. The error printed the query text Hibernate actually received, which showed the missing part. Using Java text blocks (`"""`) for JPQL avoids lost lines and missing spaces.
 - **The seed data and the past-date rule.** After rule D1 the seed interviews with old dates were rejected, so the seed had to be entered before the rule existed, and the tests use future dates.
 - **Copying ids between Postman requests.** I replaced it with a `00-setup` folder that saves the ids as collection variables, and added cleanup requests so every test run leaves the database as it found it.
 - **Testing a bulk update safely.** `cancel-day` would change the seed data for good, so its tests create their own interviews on separate dates and delete them afterwards.
@@ -351,14 +316,6 @@ The service checks the rules and returns a message. The controller compares the 
 - The count returned by `cancel-day` includes interviews that were already `REJECTED`, because the rule is "every interview except those already OFFERED". Excluding them is one extra condition in the query.
 - Tests are done in Postman. Unit tests for the service rules would be the next addition.
 - `ddl-auto=update` is convenient for development. A real deployment would use database migrations.
-
----
-
-<h2 align="center">Acknowledgements</h2>
-
-- The INSY 8322 course material and the example project built in class.
-- The Spring Boot, Spring Data JPA and PostgreSQL documentation.
-- Step-by-step guidance from a model tutor (Claude), which I used to understand each layer of the code.
 
 ---
 
