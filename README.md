@@ -18,7 +18,7 @@ There are six entities: Applicant, Recruiter, Department, InterviewRoom, Intervi
 
 ## Architecture
 
-![Request flow](docs/architecture.svg)
+![Request flow](docs/architecture.png)
 
 - The **controller** receives the request, reads the path, parameters and JSON body, calls the service, and chooses the HTTP status.
 - The **service** has the business rules (past dates, double booking, allowed status changes) and returns a list, an `Optional` or a message.
