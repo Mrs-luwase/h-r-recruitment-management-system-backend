@@ -69,7 +69,7 @@ public class RecruiterController {
     }
 
     @PutMapping("/{recruiterId}/departments/{departmentId}")
-    // PUT /api/recruiters/{recruiterId}/departments/{departmentId}
+    
     public ResponseEntity<String> addDepartmentToRecruiter(@PathVariable UUID recruiterId,
                                                            @PathVariable UUID departmentId) {
         String message = recruiterServ.addDepartmentToRecruiter(recruiterId, departmentId);

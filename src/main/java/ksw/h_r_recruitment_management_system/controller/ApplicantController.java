@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/applicants")       //The base path for every endpoint in this class
+@RequestMapping("/api/applicants")       
 public class ApplicantController {
 
     @Autowired

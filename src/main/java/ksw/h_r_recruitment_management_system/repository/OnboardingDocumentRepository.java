@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public interface OnboardingDocumentRepository extends JpaRepository<OnboardingDocument, UUID> {
 
-    // A query for Which onboarding documents belong to this applicant, across all interviews, newest received date first?
+    
     @Query("""
             SELECT d FROM OnboardingDocument d
             WHERE LOWER(d.interview.applicant.email) = LOWER(:email)
@@ -20,6 +20,6 @@ public interface OnboardingDocumentRepository extends JpaRepository<OnboardingDo
             """)
     List<OnboardingDocument> findDocumentsOfApplicant(@Param("email") String email);
 
-    // A method that checks: Does this interview already have at least one onboarding document?
+    
     boolean existsByInterviewId(UUID interviewId);
 }

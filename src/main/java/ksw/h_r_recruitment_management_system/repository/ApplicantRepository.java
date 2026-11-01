@@ -16,7 +16,7 @@ public interface ApplicantRepository extends JpaRepository<Applicant, UUID> {
 
     List<Applicant> findByLastNameIgnoreCaseOrderByFirstNameAsc(String lastName);
 
-    //Which applicants have at least one interview with this recruiter? each applcant is lsted once.
+    
     @Query("""
             SELECT DISTINCT a FROM Interview i
             JOIN i.applicant a

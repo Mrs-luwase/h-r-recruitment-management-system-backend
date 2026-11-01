@@ -19,10 +19,10 @@ public interface InterviewRepository extends JpaRepository<Interview, UUID> {
 
     List<Interview> findByInterviewDateBetweenOrderByInterviewDateAsc(LocalDate start, LocalDate end);
 
-    //Does this recruiter already have an interview on this whose status is not the given one (REJECTED)
+    
     boolean existsByRecruiterIdAndInterviewDateAndStatusNot(UUID recruiterId, LocalDate interviewDate, InterviewStatus status);
 
-    // This asks How many interviews are there for each status? A status with no interviews does not appear.
+    
     @Query("""
         SELECT i.status, COUNT(i)
         FROM Interview i
@@ -31,7 +31,7 @@ public interface InterviewRepository extends JpaRepository<Interview, UUID> {
         """)
     List<Object[]> countInterviewsByStatus();
 
-    // Reject every interview of this recruiter on this date, except those already OFFERED. Returns how many rows matched.
+    
     @Modifying
     @Query("""
             UPDATE Interview i
